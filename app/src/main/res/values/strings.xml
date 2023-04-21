@@ -1,0 +1,13 @@
+<resources>
+    <string name="app_name">Th2_Book_TabLayout</string>
+    <string-array name="tacgia">
+        <item>Nguyễn Mạnh Sơn</item>
+        <item>Trần Đình Quế</item>
+        <item>Nguyễn Duy Phương</item>
+        <item>Phạm Thế Quế</item>
+    </string-array>
+    <string-array name="phamvi">
+        <item>Học</item>
+        <item>Tra cứu</item>
+    </string-array>
+</resources>
