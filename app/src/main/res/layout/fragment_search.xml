@@ -23,43 +23,49 @@
         app:layout_constraintStart_toStartOf="parent" />
 
     <EditText
-        android:id="@+id/edFrom"
+        android:id="@+id/edTen"
         android:layout_width="150dp"
         android:layout_height="40dp"
         android:layout_marginLeft="10dp"
         android:layout_marginTop="20dp"
-        android:hint="Từ"
+        android:hint="Tìm theo tên"
         app:layout_constraintTop_toBottomOf="@+id/textView"
         app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toLeftOf="@+id/edTo"/>
+        app:layout_constraintRight_toLeftOf="@+id/edTacgia"/>
 
     <EditText
-        android:id="@+id/edTo"
+        android:id="@+id/edTacgia"
         android:layout_width="150dp"
         android:layout_height="40dp"
         android:layout_marginRight="10dp"
-        android:hint="Đến"
-        app:layout_constraintTop_toTopOf="@+id/edFrom"
+        android:hint="Tìm theo tác giả"
+        app:layout_constraintTop_toTopOf="@+id/edTen"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintLeft_toRightOf="@+id/edFrom"/>
+        app:layout_constraintLeft_toRightOf="@+id/edTen"/>
 
     <Button
         android:id="@+id/btnSearch"
         android:layout_width="150dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
-        android:text="Tìm"
-        app:layout_constraintLeft_toLeftOf="@+id/edFrom"
-        app:layout_constraintTop_toBottomOf="@+id/edFrom" />
-
+        android:text="Tìm theo tên"
+        app:layout_constraintLeft_toLeftOf="@+id/edTen"
+        app:layout_constraintTop_toBottomOf="@+id/edTen" />
+    <Button
+        android:id="@+id/btnSearch2"
+        android:layout_width="150dp"
+        android:layout_height="wrap_content"
+        android:text="Tìm theo TG"
+        app:layout_constraintLeft_toLeftOf="@+id/edTacgia"
+        app:layout_constraintTop_toTopOf="@+id/btnSearch"/>
     <Button
         android:id="@+id/btnGetStatistic"
         android:layout_width="150dp"
         android:layout_height="wrap_content"
         android:text="Thống kê"
-        app:layout_constraintLeft_toLeftOf="@+id/edTo"
-        app:layout_constraintTop_toTopOf="@+id/btnSearch"/>
-
+        app:layout_constraintTop_toBottomOf="@+id/btnSearch"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"/>
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerViewFragmentSearch"
         android:layout_width="0dp"

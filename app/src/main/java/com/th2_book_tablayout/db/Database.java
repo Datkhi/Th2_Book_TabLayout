@@ -143,5 +143,43 @@ public class Database extends SQLiteOpenHelper {
         cursor.close();
     }
     return list;
-}
+    }
+    public List<Book> searchBookByTacgia(String s){
+        List<Book> list = new ArrayList<>();
+        String where = "tacgia like ?";
+        String[] args = {"%"+s+"%"};
+        SQLiteDatabase st = getReadableDatabase();
+        Cursor cursor = st.query("books", null, where, args, null, null, null);
+        while (cursor!=null && cursor.moveToNext()){
+            int id = cursor.getInt(0);
+            String ten = cursor.getString(1);
+            String tacgia = cursor.getString(2);
+            String phamvi = cursor.getString(3);
+            String doituong = cursor.getString(4);
+            String danhgia = cursor.getString(5);
+            list.add(new Book(id, ten, tacgia, phamvi, doituong, danhgia));
+        }
+        if(cursor != null) {
+            cursor.close();
+        }
+        return list;
+    }
+        public List<Book> getStatistic(){
+        SQLiteDatabase sqLiteDatabase = getReadableDatabase();
+        List<Book> listBook = new ArrayList<>();
+        Cursor cursor = sqLiteDatabase.query("books",new String[]{"id","ten","tacgia","phamvi","doituong",
+                        "MAX(danhgia) AS danhgia"},
+                null, null,"tacgia",null,"danhgia DESC");
+        while(cursor!=null && cursor.moveToNext()){
+            int id = cursor.getInt(0);
+            String ten = cursor.getString(1);
+            String tacgia = cursor.getString(2);
+            String phamvi = cursor.getString(3);
+            String doituong = cursor.getString(4);
+            String danhgia = cursor.getFloat(5)+"";
+            Book book = new Book(id,ten,tacgia,phamvi,doituong,danhgia);
+            listBook.add(book);
+        }
+        return listBook;
+    }
 }

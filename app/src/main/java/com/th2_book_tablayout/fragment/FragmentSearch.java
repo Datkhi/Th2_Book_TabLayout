@@ -24,8 +24,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class FragmentSearch extends Fragment {
-    private EditText edFrom, edTo;
-    private Button btnSearch, btnStatistic;
+    private EditText edTen, edTacgia;
+    private Button btnSearch, btnSearch2, btnStatistic;
     private RecyclerView recyclerView;
     private RecyclerViewAdapter recyclerViewAdapter;
     @Nullable
@@ -37,9 +37,10 @@ public class FragmentSearch extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        edFrom = view.findViewById(R.id.edFrom);
-        edTo = view.findViewById(R.id.edTo);
+        edTen = view.findViewById(R.id.edTen);
+        edTacgia = view.findViewById(R.id.edTacgia);
         btnSearch = view.findViewById(R.id.btnSearch);
+        btnSearch2 = view.findViewById(R.id.btnSearch2);
         btnStatistic = view.findViewById(R.id.btnGetStatistic);
         recyclerView = view.findViewById(R.id.recyclerViewFragmentSearch);
         recyclerViewAdapter = new RecyclerViewAdapter(new ArrayList<>());
@@ -57,7 +58,25 @@ public class FragmentSearch extends Fragment {
 //                recyclerViewAdapter.setListBook(listBook);
 //            }
 //        });
-
+        //SearchByTen
+        btnSearch.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Database db = new Database(getActivity());
+                String tenSach = edTen.getText().toString().trim();
+                List<Book> listBook = db.searchBookByTen(tenSach);
+                recyclerViewAdapter.setListBook(listBook);
+            }
+        });
+        btnSearch2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Database db = new Database(getActivity());
+                String tacGia = edTacgia.getText().toString().trim();
+                List<Book> listBook = db.searchBookByTacgia(tacGia);
+                recyclerViewAdapter.setListBook(listBook);
+            }
+        });
         // Statistic
 //        btnStatistic.setOnClickListener(new View.OnClickListener() {
 //            @Override
@@ -67,6 +86,14 @@ public class FragmentSearch extends Fragment {
 //                recyclerViewAdapter.setListBook(listBook);
 //            }
 //        });
+        btnStatistic.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Database db = new Database(getActivity());
+                List<Book> listBook = db.getStatistic();
+                recyclerViewAdapter.setListBook(listBook);
+            }
+        });
 
         recyclerViewAdapter.setItemClickListener(new RecyclerViewAdapter.ItemClickListener() {
             @Override
